@@ -1,5 +1,7 @@
 package com.spring.address_book_app.controller;
 
+import com.spring.address_book_app.service.AddressBookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -9,28 +11,36 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/address-book")
 public class AddressBookController {
 
-    @PostMapping("/post")
-    public ResponseEntity<String> addAddress(){
-        return new ResponseEntity<>("Address posted successfully", HttpStatus.OK);
-    }
+    @Autowired
+    private AddressBookService addressBookService;
 
-    @GetMapping("/get")
-    public ResponseEntity<String> getAddress(){
-        return new ResponseEntity<>("Address fetched successfully", HttpStatus.OK);
+    @PostMapping("/post")
+    public ResponseEntity<String> addAddressBook(){
+        return addressBookService.addAddressBook();
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<String> getAddressById(@PathVariable long id){
-        return new ResponseEntity<>("Address with ID " + id + " fetched successfully.", HttpStatus.OK);
+    public ResponseEntity<String> getAddressBookById(@PathVariable long id){
+        return addressBookService.getAddressBookById(id);
+    }
+
+    @GetMapping("/get/all")
+    public ResponseEntity<String> getAllAddressBook(){
+        return addressBookService.getAllAddressBook();
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity<String> putAddressAtId(@PathVariable long id){
-        return new ResponseEntity<>("Address updated successfully at ID " + id, HttpStatus.OK);
+    public ResponseEntity<String> putAddressBookAtId(@PathVariable long id){
+        return addressBookService.updateAddressBookAtId(id);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAddressById(@PathVariable long id){
-        return new ResponseEntity<>("Address deleted successfully at ID " + id, HttpStatus.OK);
+        return addressBookService.deleteAddressBookById(id);
+    }
+
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<String> deleteAddressBooks(){
+        return addressBookService.deleteAllAddressBooks();
     }
 }

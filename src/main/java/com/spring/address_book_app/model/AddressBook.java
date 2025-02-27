@@ -13,12 +13,20 @@ public class AddressBook {
 
     private String name;
     private Long phoneNumber;
+    private String email;
+    private String address;
+    private String city;
+    private String state;
 
     public AddressBook(){};
 
-    public AddressBook(String name, Long phoneNumber){
-        this.name = name;
+    public AddressBook(Long phoneNumber, String name, String email, String address, String city, String state) {
         this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.city = city;
+        this.state = state;
     }
 
     //getters and setters
@@ -44,5 +52,37 @@ public class AddressBook {
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
