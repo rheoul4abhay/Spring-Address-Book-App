@@ -19,13 +19,18 @@ public class AddressBookController {
         return new ResponseEntity<>("Address fetched successfully", HttpStatus.OK);
     }
 
-    @PutMapping("/put")
-    public ResponseEntity<String> putAddress(){
-        return new ResponseEntity<>("Address updated successfully", HttpStatus.OK);
+    @GetMapping("/get/{id}")
+    public ResponseEntity<String> getAddressById(@PathVariable long id){
+        return new ResponseEntity<>("Address with ID " + id + " fetched successfully.", HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteAddress(){
-        return new ResponseEntity<>("Address deleted successfully", HttpStatus.OK);
+    @PutMapping("/put/{id}")
+    public ResponseEntity<String> putAddressAtId(@PathVariable long id){
+        return new ResponseEntity<>("Address updated successfully at ID " + id, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteAddressById(@PathVariable long id){
+        return new ResponseEntity<>("Address deleted successfully at ID " + id, HttpStatus.OK);
     }
 }
